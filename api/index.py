@@ -15,7 +15,22 @@ from analyzer import analyze_statement
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": ["*"]}})
+
+# Configure CORS for frontend and development
+allowed_origins = [
+    "https://statement-analyser-frontend.vercel.app",
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:5173"
+]
+
+CORS(app, resources={r"/*": {
+    "origins": allowed_origins,
+    "methods": ["GET", "POST", "OPTIONS"],
+    "allow_headers": ["Content-Type"],
+    "supports_credentials": True
+}})
 
 # Configuration
 UPLOAD_FOLDER = "/tmp/uploads"
