@@ -54,6 +54,16 @@ def health():
     }), 200
 
 
+@app.route("/test", methods=["GET"])
+def test_endpoint():
+    """Simple test endpoint for frontend/backend connectivity checks"""
+    return jsonify({
+        "status": "ok",
+        "message": "Test endpoint reached successfully",
+        "service": "bank-statement-analyzer-backend"
+    }), 200
+
+
 @app.route("/analyze", methods=["POST"])
 def analyze():
     """
